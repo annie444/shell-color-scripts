@@ -4,6 +4,8 @@ LOCAL_SCRIPT_DIR = $(HOME)/.local/share/shell-color-scripts
 GLOBAL_BIN_DIR = /usr/local/bin
 LOCAL_BIN_DIR = $(HOME)/.local/bin
 
+SHELL_CMD = $(shell basename $(SHELL))
+
 clean: 
 	rm -rf $(GLOBAL_SCRIPT_DIR)
 
@@ -19,6 +21,9 @@ install-local: clean
 	mkdir -p $(LOCAL_SCRIPT_DIR)/colorscripts
 	cp -rf colorscripts/* $(LOCAL_SCRIPT_DIR)/colorscripts
 	cp colorscript.sh $(LOCAL_BIN_DIR)/colorscript
+	ifeq ($(SHELL_CMD),fish)
+		cp -f completions/colorscript.fish $(HOME)/.config/fish/completions/colorscript.fish
+	endif
 
 uninstall:
 	rm -rf $(GLOBAL_SCRIPT_DIR)
