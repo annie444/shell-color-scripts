@@ -1,12 +1,30 @@
+GLOBAL_SCRIPT_DIR = /opt/shell-color-scripts
+LOCAL_SCRIPT_DIR = $(HOME)/.local/share/shell-color-scripts
+
+GLOBAL_BIN_DIR = /usr/local/bin
+LOCAL_BIN_DIR = $(HOME)/.local/bin
+
 clean: 
-	rm -rf /opt/shell-color-scripts
+	rm -rf $(GLOBAL_SCRIPT_DIR)
+
+clean-local: 
+	rm -rf $(LOCAL_SCRIPT_DIR)
 
 install: clean
-	mkdir -p /opt/shell-color-scripts/colorscripts
-	cp -rf colorscripts/* /opt/shell-color-scripts/colorscripts
-	cp colorscript.sh /usr/local/bin/colorscript
+	mkdir -p $(GLOBAL_SCRIPT_DIR)/colorscripts
+	cp -rf colorscripts/* $(GLOBAL_SCRIPT_DIR)/colorscripts
+	cp colorscript.sh $(GLOBAL_BIN_DIR)/colorscript
+
+install-local: clean
+	mkdir -p $(LOCAL_SCRIPT_DIR)/colorscripts
+	cp -rf colorscripts/* $(LOCAL_SCRIPT_DIR)/colorscripts
+	cp colorscript.sh $(LOCAL_BIN_DIR)/colorscript
 
 uninstall:
-	rm -rf /opt/shell-color-scripts
-	rm -f /usr/local/bin/colorscript
+	rm -rf $(GLOBAL_SCRIPT_DIR)
+	rm -f $(GLOBAL_BIN_DIR)/colorscript
+
+uninstall-local:
+	rm -rf $(LOCAL_SCRIPT_DIR)
+	rm -f $(LOCAL_BIN_DIR)/colorscript
 
