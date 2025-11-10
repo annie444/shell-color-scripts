@@ -22,7 +22,7 @@ install-local: clean
 	cp -rf colorscripts/* $(LOCAL_SCRIPT_DIR)/colorscripts
 	cp colorscript.sh $(LOCAL_BIN_DIR)/colorscript
 	[ $(SHELL_CMD) = "fish" ] && \
-	cp -f completions/colorscript.fish $(HOME)/.config/fish/completions/colorscript.fish
+	cp -f completions/colorscript-local.fish $(HOME)/.config/fish/completions/colorscript.fish
 
 uninstall:
 	rm -rf $(GLOBAL_SCRIPT_DIR)
